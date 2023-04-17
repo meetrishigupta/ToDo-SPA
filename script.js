@@ -6,7 +6,7 @@ const addtaskInput = document.getElementById("add");
 const taskCounter = document.getElementById("task-counter");
 //testing
 console.log("working");
-
+//adding list on tasks
 function asktTaskToDOM(task) {
   const li = document.createElement("li");
   li.innerHTML = `
@@ -18,7 +18,6 @@ function asktTaskToDOM(task) {
   taskArray.append(li);
 }
 
-
 function renderList() {
   taskArray.innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
@@ -26,7 +25,7 @@ function renderList() {
   }
   taskCounter.innerHTML = tasks.length;
 }
-//toggling task true and false 
+//toggling task true and false
 function toggleTask(taskId) {
   const task = tasks.filter(function (task) {
     return task.id === taskId;
@@ -42,7 +41,7 @@ function toggleTask(taskId) {
   }
 }
 
-// Delete functionallity 
+// Delete functionallity
 function DeleteTask(taskId) {
   const newTasks = tasks.filter(function (task) {
     return task.id !== taskId;
@@ -51,7 +50,7 @@ function DeleteTask(taskId) {
   renderList();
   showNotification("Task Delete successfully");
 }
-//Adding task 
+//Adding task
 function addTask(task) {
   if (task) {
     tasks.push(task);
@@ -65,7 +64,7 @@ function addTask(task) {
 function showNotification(text) {
   alert(text);
 }
-// Handle Data on Input feild 
+// Handle Data on Input feild
 function handleInputKeypress(e) {
   if (e.key === "Enter") {
     const text = e.target.value;
@@ -92,11 +91,32 @@ function handleClickListner(e) {
     DeleteTask(taskID);
     return;
   } else if (target.className === "custom-checkbox") {
-    // const taskID = target.id;
-    // toggleTask(taskID);
     return;
   }
 }
+
+// async function fetchDummyData() {
+//Get Request
+//   fetch("https://jsonplaceholder.typicode.com/todos")
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       tasks = data.slice(0, 10);
+//       renderList();
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+// }
+// try {
+//   const repsonse = await fetch("https://jsonplaceholder.typicode.com/todos");
+//   const data = await response.json();
+//   renderList();
+// } catch (error) {
+//   console.log(error);
+// }
+
 //Starting App
 function InitializeApp() {
   addtaskInput.addEventListener("keyup", handleInputKeypress);
