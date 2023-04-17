@@ -1,8 +1,12 @@
+//Creating Blank Array
 let tasks = [];
+//Get Data from HTML
 const taskArray = document.getElementById("list");
 const addtaskInput = document.getElementById("add");
 const taskCounter = document.getElementById("task-counter");
+//testing
 console.log("working");
+
 function asktTaskToDOM(task) {
   const li = document.createElement("li");
   li.innerHTML = `
@@ -13,6 +17,8 @@ function asktTaskToDOM(task) {
   <img src= "bin.svg" class="delete" data-id= "${task.id}" />`;
   taskArray.append(li);
 }
+
+
 function renderList() {
   taskArray.innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
@@ -20,6 +26,7 @@ function renderList() {
   }
   taskCounter.innerHTML = tasks.length;
 }
+//toggling task true and false 
 function toggleTask(taskId) {
   const task = tasks.filter(function (task) {
     return task.id === taskId;
@@ -34,6 +41,8 @@ function toggleTask(taskId) {
     showNotification("Could not toggle the task ");
   }
 }
+
+// Delete functionallity 
 function DeleteTask(taskId) {
   const newTasks = tasks.filter(function (task) {
     return task.id !== taskId;
@@ -42,6 +51,7 @@ function DeleteTask(taskId) {
   renderList();
   showNotification("Task Delete successfully");
 }
+//Adding task 
 function addTask(task) {
   if (task) {
     tasks.push(task);
@@ -55,6 +65,7 @@ function addTask(task) {
 function showNotification(text) {
   alert(text);
 }
+// Handle Data on Input feild 
 function handleInputKeypress(e) {
   if (e.key === "Enter") {
     const text = e.target.value;
@@ -73,6 +84,7 @@ function handleInputKeypress(e) {
     addTask(task);
   }
 }
+//Deleting task  listner only
 function handleClickListner(e) {
   const target = e.target;
   if (target.className === "delete") {
@@ -85,8 +97,9 @@ function handleClickListner(e) {
     return;
   }
 }
-function intializeapp() {
+//Starting App
+function InitializeApp() {
   addtaskInput.addEventListener("keyup", handleInputKeypress);
   document.addEventListener("click", handleClickListner);
 }
-intializeapp();
+InitializeApp();
