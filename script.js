@@ -102,7 +102,7 @@ function handleClickListner(e) {
 //       return response.json();
 //     })
 //     .then(function (data) {
-//       tasks = data.slice(0, 10);
+      // tasks = data.slice(0, 10);
 //       renderList();
 //     })
 //     .catch(function (error) {
